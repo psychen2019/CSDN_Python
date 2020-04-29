@@ -1,0 +1,74 @@
+'''
+    学员信息管理系统
+    1.学员信息数据源
+    2.查看学员信息
+    3.添加学员信息
+    4.删除学员信息
+    5.退出系统
+    6.界面和交互
+'''
+# 1.学员信息数据源
+stu_list = [
+    {'name':'zhangsan','age':20,'classid':'Python01'},
+    {'name':'lisi','age':28,'classid':'Python02'},
+    {'name':'wangwu','age':31,'classid':'Python03'}
+]
+
+# 2.查看学员信息
+def show_stus_info():
+
+   if len(stu_list) == 0:
+       print('='*20,'没有学员信息','='*20)
+       return
+   print('丨{0:<3}丨{1:<8}丨{2:<5}丨{3:<8}'.format('sid','name','age','classid'))
+   print('='*40)
+   for i,stu_dict in enumerate(stu_list):
+
+       print('丨{0:<3}丨{1:<8}丨{2:<5}丨{3:<8}'.format(i+1,stu_dict['name'],stu_dict['age'],stu_dict['classid']))
+# 3.添加学员信息
+def add_stu(name,age,classid):
+    stu_dic = {}
+    stu_dic['name'] = name
+    stu_dic['age'] = age
+    stu_dic['classid'] = classid
+    stu_list.append(stu_dic)
+# 4.删除学员信息
+def del_stu(sid):
+    sid_ind = int(sid)
+    stu_list.pop(sid_ind-1)
+# 5.退出系统
+def loninOut():
+    pass
+# 6.界面和交互
+while True:
+    print('='*12,'学员管理系统','='*12)
+    print('{:1} {:13} {:15}'.format(' ','1.查看学员信息','2.添加学员信息'))
+    print('{:1} {:13} {:15}'.format(' ','3.删除学员信息','4.退出系统'))
+    print('='*40)
+    key = input('请输入对应的选择')
+    if key == '1':
+        print('='*12,'学员信息总览','='*12)
+        show_stus_info()
+        input('按回车继续')
+    elif key == '2':
+        print('='*12,'添加学员信息','='*12)
+        name = input('请输入姓名：')
+        age = input('请输入年龄：')
+        classid = input('请输入班级号：')
+        add_stu(name,age,classid)
+        show_stus_info()
+        input('按回车继续')
+    elif key == '3':
+         print('='*12,'删除学员信息','='*12)
+         show_stus_info()
+         sid = input('请输入要删除学员的sid')
+         del_stu(sid)
+         show_stus_info()
+         input('按回车继续')
+    elif key == '4':
+        loninOut()
+        print('='*12,'再见','='*12)
+        break
+
+    else:
+        print('='*12,'操作无效','='*12)
